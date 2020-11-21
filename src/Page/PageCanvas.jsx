@@ -94,6 +94,9 @@ export class PageCanvasInternal extends PureComponent {
     if (!canvas) {
       return null;
     }
+    if (!canvas2) {
+      return null;
+    }
 
     const { renderViewport, viewport } = this;
     const { page, renderInteractiveForms } = this.props;
@@ -101,8 +104,14 @@ export class PageCanvasInternal extends PureComponent {
     canvas.width = renderViewport.width;
     canvas.height = renderViewport.height;
 
+    canvas2.width = renderViewport.width;
+    canvas2.height = renderViewport.height;
+
     canvas.style.width = `${Math.floor(viewport.width)}px`;
     canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+    canvas2.style.width = `${Math.floor(viewport.width)}px`;
+    canvas2.style.height = `${Math.floor(viewport.height)}px`;
 
     const renderContext = {
       get canvasContext() {
@@ -131,8 +140,6 @@ export class PageCanvasInternal extends PureComponent {
           ref={(ref) => {
             this.annotationsLayer = ref;
           }}
-          width="612"
-          height="792"
         />
         <canvas
           className="react-pdf__Page__canvas"
