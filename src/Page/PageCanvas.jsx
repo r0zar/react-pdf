@@ -136,7 +136,7 @@ export class PageCanvasInternal extends PureComponent {
       <>
         <canvas
           id="annotations-canvas"
-          style={{ position: "absolute" }}
+          style={{ position: "absolute", zIndex: 1 }}
           ref={(ref) => {
             this.annotationsLayer = ref;
           }}
