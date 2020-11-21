@@ -1,16 +1,16 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 
-import PageContext from '../PageContext';
+import PageContext from "../PageContext";
 
 import {
   errorOnDev,
   getPixelRatio,
   isCancelException,
   makePageCallback,
-} from '../shared/utils';
+} from "../shared/utils";
 
-import { isPage, isRotate } from '../shared/propTypes';
+import { isPage, isRotate } from "../shared/propTypes";
 
 export class PageCanvasInternal extends PureComponent {
   componentDidMount() {
@@ -57,7 +57,7 @@ export class PageCanvasInternal extends PureComponent {
     const { onRenderSuccess, page, scale } = this.props;
 
     if (onRenderSuccess) onRenderSuccess(makePageCallback(page, scale));
-  }
+  };
 
   /**
    * Called when a page fails to render.
@@ -72,7 +72,7 @@ export class PageCanvasInternal extends PureComponent {
     const { onRenderError } = this.props;
 
     if (onRenderError) onRenderError(error);
-  }
+  };
 
   get renderViewport() {
     const { page, rotate, scale } = this.props;
@@ -106,7 +106,7 @@ export class PageCanvasInternal extends PureComponent {
 
     const renderContext = {
       get canvasContext() {
-        return canvas.getContext('2d');
+        return canvas.getContext("2d");
       },
       viewport: renderViewport,
       renderInteractiveForms,
@@ -120,25 +120,28 @@ export class PageCanvasInternal extends PureComponent {
     return this.renderer.promise
       .then(this.onRenderSuccess)
       .catch(this.onRenderError);
-  }
+  };
 
   render() {
     return (
       <>
-        <canvas 
-          id="annotations-container" 
+        <canvas
+          id="annotations-container"
+          className="react-pdf__Page__canvas"
           style={{
-            display: 'block',
-            userSelect: 'none',
+            display: "block",
+            userSelect: "none",
           }}
         />
         <canvas
           className="react-pdf__Page__canvas"
           dir="ltr"
-          ref={(ref) => { this.canvasLayer = ref; }}
+          ref={(ref) => {
+            this.canvasLayer = ref;
+          }}
           style={{
-            display: 'block',
-            userSelect: 'none',
+            display: "block",
+            userSelect: "none",
           }}
         />
       </>
