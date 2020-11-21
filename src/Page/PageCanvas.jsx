@@ -140,6 +140,8 @@ export class PageCanvasInternal extends PureComponent {
           ref={(ref) => {
             this.annotationsLayer = ref;
           }}
+          width={612}
+          height={792}
         />
         <canvas
           className="react-pdf__Page__canvas"
