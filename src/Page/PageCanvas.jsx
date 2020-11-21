@@ -127,7 +127,6 @@ export class PageCanvasInternal extends PureComponent {
       <>
         <canvas 
           id="annotations-container" 
-          dir="ltr"
           style={{
             display: 'block',
             userSelect: 'none',
