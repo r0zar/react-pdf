@@ -124,27 +124,21 @@ export class PageCanvasInternal extends PureComponent {
 
   render() {
     return (
-      <>
+      <div
+        className="react-pdf__Page__canvas"
+        style={{
+          display: "block",
+          userSelect: "none",
+        }}
+      >
+        <canvas id="annotations-container" />
         <canvas
-          id="annotations-container"
-          className="react-pdf__Page__canvas"
-          style={{
-            display: "block",
-            userSelect: "none",
-          }}
-        />
-        <canvas
-          className="react-pdf__Page__canvas"
           dir="ltr"
           ref={(ref) => {
             this.canvasLayer = ref;
           }}
-          style={{
-            display: "block",
-            userSelect: "none",
-          }}
         />
-      </>
+      </div>
     );
   }
 }
