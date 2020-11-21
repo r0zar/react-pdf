@@ -89,9 +89,12 @@ export class PageCanvasInternal extends PureComponent {
   }
 
   drawPageOnCanvas = () => {
-    const { canvasLayer: canvas } = this;
+    const { canvasLayer: canvas, annotationsLayer: canvas2 } = this;
 
     if (!canvas) {
+      return null;
+    }
+    if (!canvas2) {
       return null;
     }
 
@@ -101,8 +104,14 @@ export class PageCanvasInternal extends PureComponent {
     canvas.width = renderViewport.width;
     canvas.height = renderViewport.height;
 
+    canvas2.width = renderViewport.width;
+    canvas2.height = renderViewport.height;
+
     canvas.style.width = `${Math.floor(viewport.width)}px`;
     canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+    canvas2.style.width = `${Math.floor(viewport.width)}px`;
+    canvas2.style.height = `${Math.floor(viewport.height)}px`;
 
     const renderContext = {
       get canvasContext() {
@@ -124,21 +133,27 @@ export class PageCanvasInternal extends PureComponent {
 
   render() {
     return (
-      <div
-        className="react-pdf__Page__canvas"
-        style={{
-          display: "block",
-          userSelect: "none",
-        }}
-      >
-        <canvas id="annotations-container" />
+      <>
         <canvas
+          id="annotations-canvas"
+          style={{ position: "absolute" }}
+          ref={(ref) => {
+            this.annotationsLayer = ref;
+          }}
+        />
+        <canvas
+          className="react-pdf__Page__canvas"
           dir="ltr"
           ref={(ref) => {
             this.canvasLayer = ref;
           }}
+          style={{
+            position: "absolute",
+            display: "block",
+            userSelect: "none",
+          }}
         />
-      </div>
+      </>
     );
   }
 }
